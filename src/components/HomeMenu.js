@@ -1,13 +1,16 @@
 import {useState } from 'react';
+import {Link, useNavigate} from "react-router-dom"
 
 function HomeMenu ({placeholder}){
     const [title, setTitle] = useState('');
+    const navigate = useNavigate();
     
 
     function HandleClick(id){
         if(title != ""){
             console.log("Test")
             console.log(title)
+            navigate('/game')
         }
         
         
