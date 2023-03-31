@@ -1,21 +1,31 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 function HomeMenu ({placeholder}){
     const inputRef = useRef(null);
+    const [title, setTitle] = useState('');
+    
 
-    const handleClick = () => {
+    function HandleClick(id){
+        if(title != ""){
+            console.log("Test")
+            console.log(title)
+        }
+        
+        
         
     }
 
     return (
         <div>
-            <button onClick={handleClick}>
-                Play
+            <button onClick ={() => HandleClick(1)}>
+                Click me
             </button>
             <input 
-                ref={inputRef}
-                type="text"
-                id="nameInput"
+                type= "text"
+                required
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+
                 placeholder={placeholder}
             >
 
