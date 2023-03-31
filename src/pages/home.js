@@ -1,6 +1,6 @@
 import HomeMenu from "../components/HomeMenu"
-import GameView from "../components/GameView";
-import CharacterMenu from "../components/CharacterMenu";
+import Background from "../assets/background.png"
+import "./home.css"
 
 function Home (){
     return (
