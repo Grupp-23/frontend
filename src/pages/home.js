@@ -6,8 +6,6 @@ function Home (){
     return (
         <main>
             <HomeMenu placeholder="Name"></HomeMenu>
-            <GameView />
-            <CharacterMenu />
         </main>
     );
 }
