@@ -2,7 +2,7 @@
 Install node.js from nodejs.org
 
 ## Install
-npm install
+npm install (in a terminal or cmd)
 
 ## Usage
-npm start
+npm start (in a terminal or cmd)
