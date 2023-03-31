@@ -5,7 +5,7 @@ Install node.js from nodejs.org
 If you are using cmd navigate to the project folder
 
 ## Install
-npm install (in a terminal or cmd)
+write "npm install" (in a terminal or cmd)
 
 ## Usage
-npm start (in a terminal or cmd)
+write "npm start" (in a terminal or cmd)
