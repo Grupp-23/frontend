@@ -1,6 +1,7 @@
 import Character1 from "../assets/character1.png";
 import Character2 from "../assets/character2.png";
 import Character3 from "../assets/character3.png";
+import "./CharacterMenu.css"
 
 function CharacterMenu (){
 
