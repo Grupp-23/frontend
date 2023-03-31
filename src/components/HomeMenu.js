@@ -1,7 +1,6 @@
-import { useRef, useState } from 'react';
+import {useState } from 'react';
 
 function HomeMenu ({placeholder}){
-    const inputRef = useRef(null);
     const [title, setTitle] = useState('');
     
 
@@ -16,9 +15,9 @@ function HomeMenu ({placeholder}){
     }
 
     return (
-        <div>
+        <div className='homeMenu'>
             <button onClick ={() => HandleClick(1)}>
-                Click me
+                Play
             </button>
             <input 
                 type= "text"
