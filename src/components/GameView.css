@@ -1,11 +1,16 @@
 #gameview {
     display: flex;
-    width: 300vw;
+    position: relative;
+    width: 200vw;
     height: 100vh;
     background-image: url("../assets/background.png");
     background-position: center bottom;
     background-repeat: no-repeat;
+    
     background-size: cover;
+    margin: 0;
+
+    
 
 }
 

@@ -1,6 +1,6 @@
 #BaseView{
     display: flex;
-    position: relative;
+    position: absolute;
     left: 0;
     bottom: 0px; 
 
@@ -8,9 +8,9 @@
 
 #BaseViewOpponent{
     display: flex;
-    position: relative;
+    position: absolute;
     right: 0%;
-    left: 90%;
+   
     bottom: 0px; 
 }
 
