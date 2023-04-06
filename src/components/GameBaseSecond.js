@@ -1,7 +1,7 @@
 import "./GameBase.css"
 import Base from "../assets/Base.png";
 
-function GameBase(){
+function GameBaseSecond(){
     return(
     
         <div id = "BaseViewOpponent">
@@ -11,4 +11,4 @@ function GameBase(){
     );
 }
 
-export default GameBase;
+export default GameBaseSecond;
