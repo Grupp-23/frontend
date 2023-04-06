@@ -6,11 +6,11 @@ import CharacterMenu from "../components/CharacterMenu";
 
 function Game (){
     return (
-        <main>
+        <div>
             <GameView placeholder="Name"></GameView>
             
             <CharacterMenu />
-        </main>
+        </div>
     );
 }
 
