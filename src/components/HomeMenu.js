@@ -1,5 +1,6 @@
 import {useState } from 'react';
 import {Link, useNavigate} from "react-router-dom"
+import "./HomeMenu.css"
 
 function HomeMenu ({placeholder}){
     const [title, setTitle] = useState('');
@@ -18,7 +19,7 @@ function HomeMenu ({placeholder}){
     }
 
     return (
-        <div className='homeMenu'>
+        <div className='menu' id="home-menu">
             <button onClick ={() => HandleClick(1)}>
                 Play
             </button>
