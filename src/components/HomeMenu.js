@@ -1,6 +1,6 @@
 import {useState } from 'react';
-import {Link, useNavigate} from "react-router-dom"
-import "./HomeMenu.css"
+import {Link, useNavigate} from "react-router-dom";
+import "./HomeMenu.css";
 
 function HomeMenu ({placeholder}){
     const [title, setTitle] = useState('');
@@ -20,9 +20,6 @@ function HomeMenu ({placeholder}){
 
     return (
         <div className='menu' id="home-menu">
-            <button onClick ={() => HandleClick(1)}>
-                Play
-            </button>
             <input 
                 type= "text"
                 required
@@ -31,8 +28,10 @@ function HomeMenu ({placeholder}){
 
                 placeholder={placeholder}
             >
-
             </input>
+            <button onClick ={() => HandleClick(1)}>
+                Play
+            </button>
         </div>
     );
 }

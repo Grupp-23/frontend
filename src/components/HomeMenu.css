@@ -1,19 +1,36 @@
 #home-menu{
+    width: 50%;
+    height: 50%;
     display: flex;
-    width: 100vw;
-    height: 100vh;
     justify-content: center;
     align-items: center;
 }
 
 #home-menu button {
-    margin-right: 5px;
-    height: 55px;
-    width: 75px;
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    height: 45px;
+    width: 80px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
     font-size: 1.75rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px black;
+    
 }
 
-#home-menu input {
-    height: 50px;
+#home-menu button:hover {
+    background-color: #469e49;
+    cursor: pointer;
+}
+
+#home-menu input[type=text] {
+    height: 40px;
+    width: 40%;
+    margin-right: 10px;
     font-size: 2rem;
+    border-radius: 10px;
+    border: 2px solid black;
 }
