@@ -1,31 +1,32 @@
+import React, { useState } from 'react';
 import Character1 from "../assets/character1.png";
 import Character2 from "../assets/character2.png";
 import Character3 from "../assets/character3.png";
 import "./CharacterMenu.css"
+import Socket from "../services/socket";
 
 function CharacterMenu (){
-
-    function handleClick(id, price) {
-        console.log("Character: " + id + "\nPrice: " + price);
+    function handleClick(type) {
+        Socket.trySpawnCharacter(type);
     }
 
     return (
         <div className="menu" id="character-menu">
             <ul>
                 <li>
-                    <button onClick={() => handleClick(1, 15)}>
+                    <button onClick={() => handleClick(1)}>
                         <img src={Character1} alt="Character 1" />
                         <p>15</p>
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => handleClick(2, 50)}>
+                    <button onClick={() => handleClick(2)}>
                         <img src={Character2} alt="Character 2" />
                         <p>50</p>
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => handleClick(3, 100)}>
+                    <button onClick={() => handleClick(3)}>
                         <img src={Character3} alt="Character 3" />
                         <p>100</p>
                     </button>
