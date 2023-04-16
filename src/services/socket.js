@@ -5,7 +5,7 @@ const Socket = {
     },
     
     trySpawnCharacter(characterType) {
-        this.spawnCharacter(characterType);
+        this.spawnCharacter(characterType, 0, "2");
     }
 }
 
