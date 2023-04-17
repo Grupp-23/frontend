@@ -25,12 +25,12 @@ const GameView = () => {
 
     // Function to scroll left
     const scrollLeft = () => {
-      window.scrollBy({ left: -1000, behavior: 'smooth' });
+      window.scrollBy({ left: -10, behavior: 'smooth' });
     };
 
     // Function to scroll right
     const scrollRight = () => {
-      window.scrollBy({ left: 1000, behavior: 'smooth' });
+      window.scrollBy({ left: 10, behavior: 'smooth' });
     };
 
     // Add event listeners to scroll on hover
