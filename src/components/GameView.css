@@ -15,10 +15,8 @@
     top: 0;
     bottom: 0;
     width: 20vw;
-    background-color: rgba(0, 0, 0, 0.2);
-    opacity: 0;
-    transition: opacity 0.3s;
-    margin-top: 100px;
+    right: 0;
+    margin-top: 500px;
   }
   .scroll-left{
     left: 0;
