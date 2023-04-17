@@ -1,0 +1,8 @@
+.character {
+    position: absolute;
+    display: flex;
+    bottom: 10px;
+    background-color: black;
+    height: 12vw;
+    width: 6vw;
+}

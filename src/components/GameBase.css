@@ -1,0 +1,15 @@
+#BaseView{
+    display: flex;
+    position: absolute;
+    left: 0%;
+    bottom: 0px; 
+
+  }
+
+#BaseViewOpponent{
+    display: flex;
+    position: absolute;
+    right: 0%;
+    bottom: 0px;
+}
+

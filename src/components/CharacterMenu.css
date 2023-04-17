@@ -1,0 +1,41 @@
+#character-menu {
+    display: flex;
+    justify-content: flex-end;
+    position: fixed;
+    top: 0px;
+    right: 0px; 
+   
+    z-index: 100;
+  }
+
+  #character-menu > ul{
+    list-style: none;
+    max-width: 500px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+#character-menu > ul > li {
+    margin-left: 0px;
+  }
+
+#character-menu > ul > li > button {
+    background-color: transparent;
+    border: solid;
+    border-color: burlywood;
+    padding: 0;
+    width: 2.1cm;
+    height: 2.18cm;
+}
+  
+#character-menu > ul > li > button:hover {
+    cursor: pointer;
+}
+
+#character-menu > ul > li > button > img{
+    width: 2cm;
+    height: 2cm;
+}
