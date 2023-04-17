@@ -1,11 +1,14 @@
 const Socket = {
     spawnCharacter: null,
-    saveSetCharacters(spawnCharacter) {
+    // test is just to automatically update the id of the new character
+    test: 1,
+    saveSpawnCharacter(spawnCharacter) {
         this.spawnCharacter = spawnCharacter;
     },
     
     trySpawnCharacter(characterType) {
-        this.spawnCharacter(characterType, 0, "2");
+        this.test = this.test + 1;
+        this.spawnCharacter(characterType, 0, this.test);
     }
 }
 

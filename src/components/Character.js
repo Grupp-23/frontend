@@ -1,13 +1,7 @@
 import "./Character.css";
 import TestCharacter from "../assets/testCharacter.png";
 
-function Character({ characterId }) {
-  let position;
-
-  function setPosition(newPosition) {
-    position = newPosition;
-  }
-
+function Character({ characterId, position }) {
   return (
     <div className="character" id={characterId} style={{ left: `${position}%` }}>
       <img src={TestCharacter} />
