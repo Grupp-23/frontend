@@ -20,4 +20,11 @@
     transition: opacity 0.3s;
     margin-top: 100px;
   }
+  .scroll-left{
+    left: 0;
+  }
+  .scroll-right{
+    right: 0;
+  }
+  
 
