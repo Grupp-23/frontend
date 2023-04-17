@@ -1,0 +1,30 @@
+#gameview {
+    display: flex;
+    position: relative;
+    width: 200vw;
+    height: 100vh;
+    background-image: url("../assets/background.png");
+    background-position: center bottom;
+    background-repeat: no-repeat;
+    
+    background-size: cover;
+    margin: 0;
+}
+.scroll-left, .scroll-right {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    width: 20vw;
+    background-color: rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    margin-top: 100px;
+  }
+  .scroll-left{
+    left: 0;
+  }
+  .scroll-right{
+    right: 0;
+  }
+  
+
