@@ -25,34 +25,43 @@ const GameView = () => {
 
     // Function to scroll left
     const scrollLeft = () => {
-      window.scrollBy({ left: -1000, behavior: 'smooth' });
+      window.scrollBy({ left: -10, behavior: 'smooth' });
     };
 
     // Function to scroll right
     const scrollRight = () => {
-      window.scrollBy({ left: 1000, behavior: 'smooth' });
+      window.scrollBy({ left: 10, behavior: 'smooth' });
+    };
+
+    // Function to add mouseenter and mouseleave event listeners
+    const addScrollEventListeners = () => {
+      left.addEventListener('mouseenter', scrollLeft);
+      left.addEventListener('mouseleave', handleMouseLeave);
+      right.addEventListener('mouseenter', scrollRight);
+      right.addEventListener('mouseleave', handleMouseLeave);
+    };
+
+    // Function to remove mouseenter and mouseleave event listeners
+    const removeScrollEventListeners = () => {
+      left.removeEventListener('mouseenter', scrollLeft);
+      left.removeEventListener('mouseleave', handleMouseLeave);
+      right.removeEventListener('mouseenter', scrollRight);
+      right.removeEventListener('mouseleave', handleMouseLeave);
+    };
+
+    // Function to handle mouseleave event
+    const handleMouseLeave = () => {
+      removeScrollEventListeners();
     };
 
     // Add event listeners to scroll on hover
-    left.addEventListener('mouseenter', () => {
-      const scrollInterval = setInterval(scrollLeft, 10);
-      left.addEventListener('mouseleave', () => {
-        clearInterval(scrollInterval);
-      });
-    });
-
-    right.addEventListener('mouseenter', () => {
-      const scrollInterval = setInterval(scrollRight, 10);
-      right.addEventListener('mouseleave', () => {
-        clearInterval(scrollInterval);
-      });
-    });
+    left.addEventListener('mouseenter', addScrollEventListeners);
+    right.addEventListener('mouseenter', addScrollEventListeners);
 
     // Clean up event listeners on component unmount
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      left.removeEventListener('mouseenter', () => {});
-      right.removeEventListener('mouseenter', () => {});
+      removeScrollEventListeners();
     };
   }, []);
 
