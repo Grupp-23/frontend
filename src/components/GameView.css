@@ -14,4 +14,18 @@
 
 }
 
+.scroll-left, .scroll-right {
+    position: fixed;
+    top: 0;
 
+    bottom: 0;
+    width: 20vw;
+    right: 0;
+    margin-top: 50vh;
+  }
+  .scroll-left{
+    left: 0;
+  }
+  .scroll-right{
+    right: 0;
+  }
