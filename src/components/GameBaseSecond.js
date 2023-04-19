@@ -5,7 +5,7 @@ function GameBaseSecond(){
     return(
     
         <div id = "BaseViewOpponent">
-            <img src = {Base} width={"350px"} />
+            <img src = {Base} />
         </div>
 
     );
