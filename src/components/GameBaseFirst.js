@@ -5,7 +5,7 @@ function GameBase(){
     return(
     
         <div id = "BaseView">
-            <img src = {Base} width={"350px"} />
+            <img src = {Base} />
         </div>
 
     );
