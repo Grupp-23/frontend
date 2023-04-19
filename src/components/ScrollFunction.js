@@ -1,94 +1,94 @@
-import React, { useEffect, useRef } from 'react';
+import React, { Component } from 'react';
 import './GameView.css';
 
-function ScrollFunction(){
-    const isScrollingRef = useRef(false); // Ref to keep track of scrolling state
-    const left = document.querySelector('.scroll-left');
-    const right = document.querySelector('.scroll-right');
-    useEffect(() => {
-        
-        let scrollInterval = null;
-        let speed = 10;
+class ScrollFunction extends Component {
+  constructor(props) {
+    super(props);
 
-        // Function to handle scroll event
-        const handleScroll = () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            if (scrollTop > 0) {
-            left.style.opacity = 1;
-            right.style.opacity = 1;
-            } else {
-            left.style.opacity = 0;
-            right.style.opacity = 0;
-            }
-        };
+    this.isScrollingRef = React.createRef();
+    this.left = null;
+    this.right = null;
+  }
 
-        // Add event listener for scroll event
-        window.addEventListener('scroll', handleScroll);
+  handleScroll = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > 0) {
+      this.left.style.opacity = 1;
+      this.right.style.opacity = 1;
+    } else {
+      this.left.style.opacity = 0;
+      this.right.style.opacity = 0;
+    }
+  }
 
-        // Function to scroll left
-        const scrollLeft = () => {
-            if (isScrollingRef.current) {
-            window.scrollBy({ left: -10, behavior: 'smooth' });
-            
-            requestAnimationFrame(scrollLeft);
-            }
-        };
+  scrollLeft = () => {
+    if (this.isScrollingRef.current) {
+      window.scrollBy({ left: -10, behavior: 'smooth' });
+      requestAnimationFrame(this.scrollLeft);
+    }
+  }
 
-        // Function to scroll right
-        const scrollRight = () => {
-            if (isScrollingRef.current) {
-            window.scrollBy({ left: 10, behavior: 'smooth' });
-            requestAnimationFrame(scrollRight);
-            }
-        };
+  scrollRight = () => {
+    if (this.isScrollingRef.current) {
+      window.scrollBy({ left: 10, behavior: 'smooth' });
+      requestAnimationFrame(this.scrollRight);
+    }
+  }
 
-        // Function to start scrolling
-        const startScrolling = (direction) => {
-            if (!isScrollingRef.current) {
-            isScrollingRef.current = true;
-            if (direction === 'left') {
-                scrollLeft();
-            } else {
-                scrollRight();
-            }
-            }
-        };
+  startScrolling = (direction) => {
+    if (!this.isScrollingRef.current) {
+      this.isScrollingRef.current = true;
+      if (direction === 'left') {
+        this.scrollLeft();
+      } else {
+        this.scrollRight();
+      }
+    }
+  }
 
-        // Function to stop scrolling
-        const stopScrolling = () => {
-            isScrollingRef.current = false;
-        };
+  stopScrolling = () => {
+    this.isScrollingRef.current = false;
+  }
 
-        // Add event listeners for mouseover and mouseout events
-        left.addEventListener('mouseover', () => {
-            startScrolling('left');
-        });
-        left.addEventListener('mouseout', stopScrolling);
-        right.addEventListener('mouseover', () => {
-            startScrolling('right');
-        });
-        right.addEventListener('mouseout', stopScrolling);
+  componentDidMount() {
+    this.left = document.querySelector('.scroll-left');
+    this.right = document.querySelector('.scroll-right');
 
-        // Clean up event listeners on component unmount
-        return () => {
-            window.removeEventListener('scroll', handleScroll);
-            left.removeEventListener('mouseover', () => {});
-            left.removeEventListener('mouseout', stopScrolling);
-            right.removeEventListener('mouseover', () => {});
-            right.removeEventListener('mouseout', stopScrolling);
-        };
-    }, []);
+    // Add event listener for scroll event
+    window.addEventListener('scroll', this.handleScroll);
+
+    // Add event listeners for mouseover and mouseout events
+    this.left.addEventListener('mouseover', () => {
+      this.startScrolling('left');
+    });
+    this.left.addEventListener('mouseout', this.stopScrolling);
+    this.right.addEventListener('mouseover', () => {
+      this.startScrolling('right');
+    });
+    this.right.addEventListener('mouseout', this.stopScrolling);
+  }
+
+  componentWillUnmount() {
+    // Clean up event listeners on component unmount
+    window.removeEventListener('scroll', this.handleScroll);
+    this.left.removeEventListener('mouseover', () => {});
+    this.left.removeEventListener('mouseout', this.stopScrolling);
+    this.right.removeEventListener('mouseover', () => {});
+    this.right.removeEventListener('mouseout', this.stopScrolling);
+  }
+
+  render() {
     return (
-        <div>
-          {left && right && (
-            <>
-              <div className='scroll-left'></div>
-              <div className='scroll-right'></div>
-            </>
-          )}
-        </div>
-      );
-      
-        
-} 
+      <div>
+        {this.left && this.right && (
+          <>
+            <div className='scroll-left'></div>
+            <div className='scroll-right'></div>
+          </>
+        )}
+      </div>
+    );
+  }
+}
+
 export default ScrollFunction;
