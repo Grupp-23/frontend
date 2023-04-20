@@ -5,7 +5,7 @@ function GameBase(){
     return(
     
         <div id = "BaseView">
-            <img src = {Base} />
+            <img src = {Base} alt="Ally Base" />
         </div>
 
     );

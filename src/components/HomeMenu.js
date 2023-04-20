@@ -1,5 +1,5 @@
-import {useState } from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import "./HomeMenu.css";
 
 function HomeMenu ({placeholder}){
@@ -8,7 +8,7 @@ function HomeMenu ({placeholder}){
     
 
     function HandleClick(id){
-        if(title != ""){
+        if(title !== ""){
             console.log("Test")
             console.log(title)
             navigate('/game')

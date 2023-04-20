@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import GameView from "../components/GameView";
 import CharacterMenu from "../components/CharacterMenu";
 import ScrollFunction from "../components/ScrollFunction";

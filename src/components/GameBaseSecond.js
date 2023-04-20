@@ -5,7 +5,7 @@ function GameBaseSecond(){
     return(
     
         <div id = "BaseViewOpponent">
-            <img src = {Base} />
+            <img src = {Base} alt="Enemy base" />
         </div>
 
     );
