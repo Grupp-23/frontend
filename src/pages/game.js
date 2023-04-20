@@ -1,15 +1,13 @@
-import HomeMenu from "../components/HomeMenu"
+import React, { useState } from "react";
 import GameView from "../components/GameView";
 import CharacterMenu from "../components/CharacterMenu";
-
-
+import ScrollFunction from "../components/ScrollFunction";
 
 function Game (){
-    console.log("Game rendered");
     return (
         <div>
             <GameView placeholder="Name"></GameView>
-            
+            <ScrollFunction />
             <CharacterMenu />
         </div>
     );
