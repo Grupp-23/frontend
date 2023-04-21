@@ -1,4 +1,4 @@
-const Socket = {
+const WebSocket = {
     spawnCharacter: null,
     // test is just to automatically update the id of the new character
     test: 1,
@@ -12,4 +12,4 @@ const Socket = {
     }
 }
 
-export default Socket;
+export default WebSocket;
