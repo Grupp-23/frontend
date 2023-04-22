@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "./HomeMenu.css";
+import SocketClient from '../services/SocketClient';
 
 function HomeMenu ({placeholder}){
     const [title, setTitle] = useState('');
@@ -14,7 +15,7 @@ function HomeMenu ({placeholder}){
             navigate('/game')
         }
         
-        
+        SocketClient.setupConnection();
         
     }
 

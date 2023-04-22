@@ -3,7 +3,7 @@ import "./GameView.css";
 import GameBaseFirst from "../components/GameBaseFirst";
 import GameBaseSecond from "../components/GameBaseSecond";
 import Character from "./Character";
-import WebSocket from "../services/WebSocket";
+import SocketClient from "../services/SocketClient";
 
 class GameView extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class GameView extends React.Component {
     }
 
     componentDidMount() {
-        WebSocket.saveSpawnCharacter(this.spawnCharacter);
+        SocketClient.saveSpawnCharacter(this.spawnCharacter);
     }
 
     /**

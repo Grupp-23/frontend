@@ -2,11 +2,11 @@ import Character1 from "../assets/character1.png";
 import Character2 from "../assets/character2.png";
 import Character3 from "../assets/character3.png";
 import "./CharacterMenu.css"
-import WebSocket from "../services/WebSocket";
+import SocketClient from "../services/SocketClient";
 
 function CharacterMenu (){
     function handleClick(type) {
-        WebSocket.trySpawnCharacter(type);
+        SocketClient.trySpawnCharacter(type);
     }
 
     return (
