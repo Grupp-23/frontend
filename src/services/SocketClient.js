@@ -1,3 +1,6 @@
+import { useNavigate } from "react-router-dom";
+
+
 const SocketClient = {
     // test is just to automatically update the id of the new character
     test: 1,
@@ -5,13 +8,19 @@ const SocketClient = {
 
     spawnCharacter: null,
     client: null,
+    navigate: null,
 
-    setupConnection() {
+    setupConnection(navigate) {
         this.client = new WebSocket("ws://localhost:25565");
         this.client.onmessage = this.handleMessage.bind(this);
 
         this.client.onopen = () => {
-            console.log("Connected to Server");
+            console.log("Connected to Server")
+
+            this.navigate = navigate;
+
+            this.navigate("/matchmake");
+
             // You can now safely call the send method
             this.sendMessage("hello");
         };

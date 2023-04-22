@@ -10,13 +10,9 @@ function HomeMenu ({placeholder}){
 
     function HandleClick(id){
         if(title !== ""){
-            console.log("Test")
             console.log(title)
-            navigate('/game')
+            SocketClient.setupConnection(navigate);
         }
-        
-        SocketClient.setupConnection();
-        
     }
 
     return (
