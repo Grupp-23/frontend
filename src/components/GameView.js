@@ -9,11 +9,37 @@ class GameView extends React.Component {
     constructor(props) {
         super(props);
         this.state = { allyCharacters: {}, enemyCharacters: {}, intervalIds: [] };
-        this.spawnCharacter = this.spawnCharacter.bind(this);
+        this.update = this.update.bind(this);
     }
 
     componentDidMount() {
-        SocketClient.saveSpawnCharacter(this.spawnCharacter);
+        SocketClient.saveUpdate(this.update);
+    }
+
+    update(jsonObject) {
+        const action = jsonObject.method;
+
+        switch (action) {
+            case "update":
+                for (let i = 0; i < jsonObject.game.length; i++) {
+                    this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
+                }
+                break;
+
+            case "characterdmg":
+                break;
+
+            case "characterdead":
+                this.removeCharacter(jsonObject.team, jsonObject.id);
+                break;
+
+            case "spawn":
+                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, 0);
+                break;
+
+            case "basedmg":
+                break;
+        }
     }
 
     /**

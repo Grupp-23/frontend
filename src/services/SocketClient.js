@@ -1,6 +1,6 @@
 const SocketClient = {
 
-    spawnCharacter: null,
+    gameViewUpdate: null,
     client: null,
     navigate: null,
 
@@ -26,14 +26,13 @@ const SocketClient = {
 
     handleMessage(event) {
         console.log(event.data);
+
+        const obj = JSON.parse(event.data);
+        this.gameViewUpdate(obj);
     },
 
-    saveSpawnCharacter(spawnCharacter) {
-        this.spawnCharacter = spawnCharacter;
-    },
-    
-    trySpawnCharacter(characterType, id) {
-        this.spawnCharacter(characterType, id);
+    saveUpdate(update) {
+        this.gameViewUpdate = update;
     }
 }
 
