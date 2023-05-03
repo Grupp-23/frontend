@@ -22,7 +22,7 @@ class GameView extends React.Component {
         switch (action) {
             case "update":
                 for (let i = 0; i < jsonObject.game.length; i++) {
-                    this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
+                    this.setCharacterPosition(jsonObject.game[i].team, jsonObject.game[i].id, jsonObject.game[i].pos);
                 }
                 break;
 
