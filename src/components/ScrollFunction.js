@@ -17,7 +17,7 @@ function ScrollFunction() {
     const handleMouseLeave = () => {
         clearInterval(scrollInterval);
     };
-
+   
     return (
         <div>
             <div 
