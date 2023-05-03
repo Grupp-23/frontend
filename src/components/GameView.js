@@ -42,7 +42,7 @@ class GameView extends React.Component {
             }));
         }
 
-        // The following should not be in the finished product
+        /* The following should not be in the finished product
         let newPosition = 0;
 
         const intervalId = setInterval(() => {
@@ -59,7 +59,7 @@ class GameView extends React.Component {
             ...prevState,
             intervalIds: prevState.intervalIds.concat(intervalId)
         }));
-        // What shouldnt be in the finished product ends here
+        */
     }
 
     /**
