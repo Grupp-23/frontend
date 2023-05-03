@@ -25,7 +25,9 @@ const SocketClient = {
     },
 
     handleMessage(event) {
-        console.log(event.data);
+        if (event.data === "found") {
+            this.navigate("/game");
+        }
 
         const obj = JSON.parse(event.data);
         this.gameViewUpdate(obj);
