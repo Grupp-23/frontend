@@ -36,10 +36,6 @@ const SocketClient = {
 
     saveUpdate(update) {
         this.gameViewUpdate = update;
-    },
-
-    trySpawnCharacter(type) {
-
     }
 }
 

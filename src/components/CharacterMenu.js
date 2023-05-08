@@ -6,7 +6,7 @@ import SocketClient from "../services/SocketClient";
 
 function CharacterMenu (){
     function handleClick(type) {
-        SocketClient.trySpawnCharacter(type);
+        SocketClient.sendMessage(JSON.stringify({"method":"spawn","type":type}));
     }
 
     return (
