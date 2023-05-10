@@ -1,5 +1,5 @@
 import GameView from "../components/GameView";
-import CharacterMenu from "../components/CharacterMenu";
+import IngameMenu from "../components/IngameMenu";
 import ScrollFunction from "../components/ScrollFunction";
 
 function Game (){
@@ -7,7 +7,7 @@ function Game (){
         <div>
             <GameView placeholder="Name"></GameView>
             <ScrollFunction />
-            <CharacterMenu />
+            <IngameMenu />
         </div>
     );
 }
