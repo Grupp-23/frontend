@@ -3,11 +3,17 @@ import { useNavigate } from "react-router-dom";
 import "./HomeMenu.css";
 import SocketClient from '../services/SocketClient';
 
+/**
+ * Represents the Menu on the home screen.
+ * @param {string} placeholder - The placeholder text for the input field.
+ */
 function HomeMenu ({placeholder}){
     const [title, setTitle] = useState('');
     const navigate = useNavigate();
     
-
+    /**
+     * Handles the click event of the button.
+     */
     function HandleClick(id){
         if(title !== ""){
             console.log(title)
