@@ -5,11 +5,19 @@ import Character3 from "../assets/character3.png";
 import "./CharacterMenu.css"
 import SocketClient from "../services/SocketClient";
 
+/**
+ * Renders a character menu.
+ * @component
+ */
 class CharacterMenu extends React.Component {
     constructor(props) {
         super(props);
     }
-
+    
+    /**
+     * Runs when a button is clicked.
+     * @param {number} type - The type of character.
+     */
     handleClick(type) {
         SocketClient.sendMessage(JSON.stringify({"method":"spawn","type":type}));
     }
