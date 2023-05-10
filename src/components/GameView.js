@@ -1,4 +1,5 @@
-import React, { setState } from "react";
+import React, { setState, useRef } from "react";
+
 import "./GameView.css";
 import GameBaseFirst from "../components/GameBaseFirst";
 import GameBaseSecond from "../components/GameBaseSecond";
@@ -6,6 +7,7 @@ import Character from "./Character";
 import Socket from "../services/socket";
 
 class GameView extends React.Component {
+    
     constructor(props) {
         super(props);
         this.state = { allyCharacters: {}, enemyCharacters: {}, intervalIds: [] };
@@ -120,6 +122,8 @@ class GameView extends React.Component {
                         <Character key={id} characterId={character.type} position={character.position}></Character>
                     ))}
                 </div>
+
+              
 
                 <div className="characters" id="enemy">
                     {Object.entries(this.state.enemyCharacters).map(([id, character]) => (
