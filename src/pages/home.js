@@ -3,6 +3,9 @@ import Background from "../assets/background.png";
 import "./home.css";
 import logo from "../assets/ageofus.svg";
 
+/**
+ * Represents the Home Page
+ */
 function Home (){
     return (
         <main>

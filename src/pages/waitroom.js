@@ -1,6 +1,9 @@
 import Background from "../assets/background.png";
 import "./home.css";
 
+/**
+ * Represents the Waitroom Page
+ */
 function WaitRoom (){
     return (
         <main>
