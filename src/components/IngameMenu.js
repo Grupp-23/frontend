@@ -1,6 +1,9 @@
 import React from "react";
 import CharacterMenu from "../components/CharacterMenu";
 
+/**
+ * A menu component that displays a character menu and a gold counter.
+ */
 class IngameMenu extends React.Component {
     render () {
         return (
