@@ -8,7 +8,7 @@ import SocketClient from "../services/SocketClient";
 class GameView extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { allyCharacters: {}, enemyCharacters: {}, intervalIds: [] };
+        this.state = { allyCharacters: {}, enemyCharacters: {} };
         this.update = this.update.bind(this);
     }
 
@@ -39,6 +39,9 @@ class GameView extends React.Component {
                 break;
 
             case "basedmg":
+                break;
+            
+            default:
                 break;
         }
     }
