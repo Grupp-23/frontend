@@ -10,10 +10,7 @@ import SocketClient from "../services/SocketClient";
  * @component
  */
 class CharacterMenu extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-    
+
     /**
      * Runs when a button is clicked.
      * @param {number} type - The type of character.
