@@ -3,7 +3,7 @@ import Character1 from "../assets/character1.png";
 import Character2 from "../assets/character2.png";
 import Character3 from "../assets/character3.png";
 import "./CharacterMenu.css"
-import Socket from "../services/socket";
+import SocketClient from "../services/SocketClient";
 
 function CharacterMenu (){
     const progressRef = useRef(null);
@@ -15,8 +15,11 @@ function CharacterMenu (){
     const queue5 = useRef(null);
     const [queueCount, setQueueCount] = useState(0);
 
+    /**
+     * Runs when a button is clicked.
+     * @param {number} type - The type of character.
+     */
     function handleClick(type) {
-        Socket.trySpawnCharacter(type);
         let updatedQueueCount = queueCount + 1;
         setQueueCount(updatedQueueCount);
         
@@ -28,10 +31,13 @@ function CharacterMenu (){
         }
 
         let queueList = [queue1, queue2, queue3, queue4, queue5];
+        
         if (updatedQueueCount <= queueList.length) {
             queueList[updatedQueueCount-1].current.style.backgroundColor = 'red';
         }
-
+        
+        // Sends to the Server that we want to spawn a character
+        SocketClient.sendMessage(JSON.stringify({"method":"spawn","type":type}));
     }
 
     function handleLoadingComplete() {
