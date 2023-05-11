@@ -133,6 +133,7 @@ class GameView extends React.Component {
         return (
             <div id="gameview">
                 <GameBaseFirst />
+                <GameBaseSecond />
                 <div className="characters" id="ally">
                     {Object.entries(this.state.allyCharacters).map(([id, character]) => (
                         <Character key={id} characterId={character.type} position={character.position}></Character>
@@ -146,7 +147,6 @@ class GameView extends React.Component {
                         <Character key={id} characterId={character.type} position={character.position}></Character>
                     ))}
                 </div>
-                <GameBaseSecond></GameBaseSecond>
             </div>
         );
     }

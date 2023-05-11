@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Character.css";
-import TestCharacter from "../assets/testCharacter.png";
+import Swordsman from "../assets/swordsman.png";
 
 /**
  * Renders a character.
@@ -13,7 +13,7 @@ class Character extends React.Component {
     const { characterId, position } = this.props;
     return (
       <div className="character" id={characterId} style={{ left: `${position}%` }}>
-        <img src={TestCharacter} alt="Character" />
+        <img src={Swordsman} alt="Character" />
       </div>
     );
   }
