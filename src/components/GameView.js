@@ -45,7 +45,7 @@ class GameView extends React.Component {
                 break;
 
             case "spawn":
-                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, 0);
+                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "basedmg":
