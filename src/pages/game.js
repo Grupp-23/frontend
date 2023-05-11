@@ -1,16 +1,16 @@
-import HomeMenu from "../components/HomeMenu"
 import GameView from "../components/GameView";
-import CharacterMenu from "../components/CharacterMenu";
+import IngameMenu from "../components/IngameMenu";
+import ScrollFunction from "../components/ScrollFunction";
 
-
-
+/**
+ * Represents the Game Page
+ */
 function Game (){
-    console.log("Game rendered");
     return (
         <div>
             <GameView placeholder="Name"></GameView>
-            
-            <CharacterMenu />
+            <ScrollFunction />
+            <IngameMenu />
         </div>
     );
 }
