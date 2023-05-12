@@ -39,6 +39,7 @@ class GameView extends React.Component {
 
             case "characterdead":
                 this.removeCharacter(jsonObject.team, jsonObject.id);
+                console.log(jsonObject.team,jsonObject.id);
                 break;
 
             case "spawn":
@@ -113,8 +114,10 @@ class GameView extends React.Component {
         if (team === 0) {
             console.log("Removing team 0: "+ id);
             this.setState(prevState => {
+                console.log(this.state.allyCharacters);
                 const newAllyCharacters = { ...prevState.allyCharacters };
                 delete newAllyCharacters[id];
+                console.log(newAllyCharacters);
                 return { allyCharacters: newAllyCharacters };
             });
         }
@@ -123,6 +126,7 @@ class GameView extends React.Component {
             this.setState(prevState => {
                 const newEnemyCharacters = { ...prevState.enemyCharacters };
                 delete newEnemyCharacters[id];
+        
                 return { enemyCharacters: newEnemyCharacters };
             });
         }
