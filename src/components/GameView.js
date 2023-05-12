@@ -30,11 +30,8 @@ class GameView extends React.Component {
         const action = jsonObject.method;
 
         switch (action) {
-            case "update":
-                for (let i = 0; i < jsonObject.game.length; i++) {
-                    this.setCharacterPosition(jsonObject.game[i].team, jsonObject.game[i].id, jsonObject.game[i].pos);
-                    console.log(jsonObject.game[i].team, jsonObject.game[i].id, jsonObject.game[i].pos);
-                }
+            case "move":
+                this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "characterdmg":
@@ -114,6 +111,7 @@ class GameView extends React.Component {
      */
     removeCharacter(team, id) {
         if (team === 0) {
+            console.log("Removing team 0: "+ id);
             this.setState(prevState => {
                 const newAllyCharacters = { ...prevState.allyCharacters };
                 delete newAllyCharacters[id];
@@ -121,6 +119,7 @@ class GameView extends React.Component {
             });
         }
         else if (team === 1) {
+            console.log("Removing team 1: "+ id);
             this.setState(prevState => {
                 const newEnemyCharacters = { ...prevState.enemyCharacters };
                 delete newEnemyCharacters[id];
