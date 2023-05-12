@@ -33,7 +33,6 @@ class GameView extends React.Component {
             case "update":
                 for (let i = 0; i < jsonObject.game.length; i++) {
                     this.setCharacterPosition(jsonObject.game[i].team, jsonObject.game[i].id, jsonObject.game[i].pos);
-                    console.log(jsonObject.game[i].team, jsonObject.game[i].id, jsonObject.game[i].pos);
                 }
                 break;
 
@@ -42,6 +41,7 @@ class GameView extends React.Component {
 
             case "characterdead":
                 this.removeCharacter(jsonObject.team, jsonObject.id);
+                console.log(jsonObject.team,jsonObject.id);
                 break;
 
             case "spawn":
@@ -115,8 +115,10 @@ class GameView extends React.Component {
     removeCharacter(team, id) {
         if (team === 0) {
             this.setState(prevState => {
+                console.log(this.state.allyCharacters);
                 const newAllyCharacters = { ...prevState.allyCharacters };
                 delete newAllyCharacters[id];
+                console.log(newAllyCharacters);
                 return { allyCharacters: newAllyCharacters };
             });
         }
@@ -124,6 +126,7 @@ class GameView extends React.Component {
             this.setState(prevState => {
                 const newEnemyCharacters = { ...prevState.enemyCharacters };
                 delete newEnemyCharacters[id];
+        
                 return { enemyCharacters: newEnemyCharacters };
             });
         }
