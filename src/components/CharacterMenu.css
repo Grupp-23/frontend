@@ -1,22 +1,12 @@
 #character-menu {
     display: flex;
-    justify-content: flex-end;
-    position: fixed;
-    top: 0px;
-    right: 0px; 
-    
-   
-    z-index: 100;
-  }
+}
 
-  #character-menu > ul{
+#character-menu > ul{
     list-style: none;
-    max-width: 500px;
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
-    
 }
 
 

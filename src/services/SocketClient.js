@@ -7,6 +7,7 @@ const SocketClient = {
     gameViewUpdate: null,
     client: null,
     navigate: null,
+    menuSetGold: null,
 
     /**
      * Establishes the connection to the server and saves is as client.
@@ -46,7 +47,12 @@ const SocketClient = {
         }
         else {
             const obj = JSON.parse(event.data);
-            this.gameViewUpdate(obj);
+            if (obj.method === "gold") {
+                this.menuSetGold(obj.amount);
+            }
+            else {
+                this.gameViewUpdate(obj);
+            }
         }
     },
 
@@ -56,6 +62,10 @@ const SocketClient = {
      */
     saveUpdate(update) {
         this.gameViewUpdate = update;
+    },
+
+    saveSetGold(setGold) {
+        this.menuSetGold = setGold;
     }
 }
 
