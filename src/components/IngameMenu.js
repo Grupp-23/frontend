@@ -18,6 +18,10 @@ class IngameMenu extends React.Component {
         SocketClient.saveSetGold(this.setGold);
     }
 
+    /**
+     * Sets the displayed gold in the menu
+     * @param {number} amount 
+     */
     setGold(amount) {
         this.setState({ gold: amount });
     }

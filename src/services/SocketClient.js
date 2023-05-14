@@ -64,6 +64,10 @@ const SocketClient = {
         this.gameViewUpdate = update;
     },
 
+    /**
+     * Saves the setGold function from IngameMenu.
+     * @param {function} setGold - The setGold function.
+     */
     saveSetGold(setGold) {
         this.menuSetGold = setGold;
     }
