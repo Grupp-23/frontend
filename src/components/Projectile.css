@@ -1,0 +1,16 @@
+.projectile {
+    position: absolute;
+    display: flex;
+
+    height: 2vw;
+    width: 3vw;
+    
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+}
+
+.projectile img {
+    max-width: 100%;
+    max-height: 100%;
+}

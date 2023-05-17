@@ -5,6 +5,7 @@ import GameBaseFirst from "../components/GameBaseFirst";
 import GameBaseSecond from "../components/GameBaseSecond";
 import Character from "./Character";
 import SocketClient from "../services/SocketClient";
+import Projectile from "../components/Projectile.js";
 
 /**
  * Represents the game world.
@@ -14,7 +15,7 @@ class GameView extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { allyCharacters: {}, enemyCharacters: {} };
+        this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {}, timeouts: {} };
         this.update = this.update.bind(this);
     }
 
@@ -39,7 +40,6 @@ class GameView extends React.Component {
 
             case "characterdead":
                 this.removeCharacter(jsonObject.team, jsonObject.id);
-                console.log(jsonObject.team,jsonObject.id);
                 break;
 
             case "spawn":
@@ -49,9 +49,34 @@ class GameView extends React.Component {
             case "basedmg":
                 break;
             
+            case "projectile":
+                this.spawnProjectile(jsonObject.id, jsonObject.direction, jsonObject.speed, jsonObject.x, jsonObject.y, jsonObject.distance);
+                break;
+
             default:
                 break;
         }
+    }
+
+    spawnProjectile(id, direction, speed, x, y, distance) {
+        const timeoutId = setTimeout(() => {
+            const { projectiles, timeouts } = this.state;
+            delete projectiles[id];
+            delete timeouts[id];
+        
+            this.setState({ projectiles, timeouts });
+        }, speed*distance*100);
+        
+        this.setState(prevState => ({
+            projectiles: {
+                ...prevState.projectiles,
+                [id]: { x: x, y: y, direction: direction, speed: speed }
+            },
+            timeouts: {
+                ...prevState.timeouts,
+                [id]: timeoutId
+            }
+        }));
     }
 
     /**
@@ -112,7 +137,6 @@ class GameView extends React.Component {
      */
     removeCharacter(team, id) {
         if (team === 0) {
-            console.log("Removing team 0: "+ id);
             this.setState(prevState => {
                 console.log(this.state.allyCharacters);
                 const newAllyCharacters = { ...prevState.allyCharacters };
@@ -122,7 +146,6 @@ class GameView extends React.Component {
             });
         }
         else if (team === 1) {
-            console.log("Removing team 1: "+ id);
             this.setState(prevState => {
                 const newEnemyCharacters = { ...prevState.enemyCharacters };
                 delete newEnemyCharacters[id];
@@ -137,13 +160,18 @@ class GameView extends React.Component {
             <div id="gameview">
                 <GameBaseFirst />
                 <GameBaseSecond />
+
+                <div className="projectiles">
+                    {Object.entries(this.state.projectiles).map(([id, projectile]) => (
+                        <Projectile key={id} projectileId={id} x={projectile.x} y={projectile.y} direction={projectile.direction} speed={projectile.speed} />
+                    ))}
+                </div>
+
                 <div className="characters" id="ally">
                     {Object.entries(this.state.allyCharacters).map(([id, character]) => (
                         <Character key={id} characterId={id} position={character.position} characterType={character.type} ></Character>
                     ))}
                 </div>
-
-              
 
                 <div className="characters" id="enemy">
                     {Object.entries(this.state.enemyCharacters).map(([id, character]) => (
