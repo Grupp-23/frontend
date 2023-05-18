@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "./HomeMenu.css";
 import SocketClient from '../services/SocketClient';
+import CreditsHome from './CreditsHome';
 
 /**
  * Represents the Menu on the home screen.
@@ -9,6 +10,11 @@ import SocketClient from '../services/SocketClient';
  */
 function HomeMenu ({placeholder}){
     const [title, setTitle] = useState('');
+    const [isOpen, setIsOpen] = useState(false);
+    const togglePopup = () => {
+         setIsOpen(!isOpen);
+    }
+
     const navigate = useNavigate();
     
     /**
@@ -35,6 +41,18 @@ function HomeMenu ({placeholder}){
             <button onClick ={() => HandleClick(1)}>
                 Play
             </button>
+
+
+            <button onClick={togglePopup}>
+                Click to open
+            </button>
+
+            {isOpen && <CreditsHome handleClose= {togglePopup}>
+                <div>
+                    <h2>Test</h2>
+                </div>
+                    </CreditsHome>
+}
         </div>
     );
 }
