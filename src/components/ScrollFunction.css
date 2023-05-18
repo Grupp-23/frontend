@@ -1,0 +1,15 @@
+#right-scroll-div {
+    width: 10vw;
+    height: 75vh;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+}
+
+#left-scroll-div {
+    width: 10vw;
+    height: 100vh;
+    left: 0;
+    bottom: 0;
+    position: fixed;
+}
