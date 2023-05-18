@@ -51,7 +51,7 @@ body {
   }
   h1 {
     font-size: 17px;
-    font-weight: lighter;
+    font-weight: 350;
     color: #2f2b2b;
     margin: 1em 0 0.5em;
   }
@@ -71,10 +71,13 @@ body {
 
   .progress-bar {
     
-    margin: 0 auto;
-    width: 130px;
+    margin: auto;
+    width: 125px;
     height: 10px;
     position: fixed;
+    border-color: black;
+    background-color: black;
+    
     
   }
   .progress-bar .progress {
@@ -82,8 +85,8 @@ body {
     background-color: #bd251d;
     height: 10px;
     width: 0%;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-name: loading;
+    /* -webkit-animation-duration: 2s; */
+    /* -webkit-animation-name: loading; */
   }
   .progress-bar .progress .progress-shadow {
     position: absolute;
@@ -92,6 +95,7 @@ body {
     top: 100%;
     transform: skew(-22.5deg);
     transform-origin: 0 0;
+    
   }
 
   .queue{
@@ -109,6 +113,37 @@ body {
     margin-right: 5px;
 
   }
+
+  .spawnText{
+    margin-top: 5px;
+  }
+
+  .Coin{
+    display: inline-block;
+
+  }
+
+  .coinpic{
+    width: 18px;
+    height: 17px;
+    border-radius: 25px;
+    margin-top: 6px;
+    
+   
+    
+  }
+
+
+
+  .coinAmount{
+    display: inline-block;
+    font-size: 20px;
+   margin-top: 0px;
+   margin-left: 5px;
+   margin-bottom: 2px;
+  }
+
+
   
   
   @-webkit-keyframes loading {
