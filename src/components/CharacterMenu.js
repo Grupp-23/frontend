@@ -4,7 +4,7 @@ import Character2 from "../assets/character2.png";
 import Character3 from "../assets/character3.png";
 import CoinPic from "../assets/goldpic.png";
 import "./CharacterMenu.css"
-import SocketClient from "../services/SocketClient";
+import Socket from "../services/socket";
 
 function CharacterMenu (){
     const progressRef = useRef(null);
@@ -30,10 +30,6 @@ function CharacterMenu (){
         if (updatedQueueCount <= queueList.length) {
             queueList[updatedQueueCount-1].current.style.backgroundColor = 'red';
         }
-
-        
-        // Sends to the Server that we want to spawn a character
-        SocketClient.sendMessage(JSON.stringify({"method":"spawn","type":type}));
 
         if (updatedQueueCount === queueList.length) {
             setButtonsDisabled(true);
