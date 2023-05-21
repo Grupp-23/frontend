@@ -28,33 +28,29 @@ function HomeMenu ({placeholder}){
     }
 
     return (
-        <div className='menu' id="home-menu">
-            <input 
-                type= "text"
-                required
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
-
-                placeholder={placeholder}
-            >
-            </input>
-            <button onClick ={() => HandleClick(1)}>
-                Play
-            </button>
-
-
-            <button onClick={togglePopup}>
-                Click to open
-            </button>
-
-            {isOpen && <CreditsHome handleClose= {togglePopup}>
-                <div>
-                    <h2>Test</h2>
-                </div>
-                    </CreditsHome>
-}
+        <div className="menu" id="home-menu">
+          <input
+            type="text"
+            required
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder={placeholder}
+          />
+    
+          <div className="button-group">
+            <button onClick={() => HandleClick(1)}>Play</button>
+            <button onClick={togglePopup}>Credits</button>
+          </div>
+    
+          {isOpen && (
+            <CreditsHome handleClose={togglePopup}>
+              <div>
+                <h2>Test</h2>
+              </div>
+            </CreditsHome>
+          )}
         </div>
-    );
-}
+      );
+    }
 
 export default HomeMenu;
