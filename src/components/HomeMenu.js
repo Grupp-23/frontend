@@ -25,6 +25,9 @@ function HomeMenu ({placeholder}){
             console.log(title)
             SocketClient.setupConnection(navigate);
         }
+        else{
+            window.alert("You need to enter a name to play")
+        }
     }
 
     return (
