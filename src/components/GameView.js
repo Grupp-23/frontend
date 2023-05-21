@@ -1,14 +1,20 @@
-import React from "react";
+import React, { setState, useRef } from "react";
+
 import "./GameView.css";
 import GameBaseFirst from "../components/GameBaseFirst";
 import GameBaseSecond from "../components/GameBaseSecond";
 import Character from "./Character";
 import SocketClient from "../services/SocketClient";
 
+/**
+ * Represents the game world.
+ * @component
+ */
 class GameView extends React.Component {
+    
     constructor(props) {
         super(props);
-        this.state = { allyCharacters: {}, enemyCharacters: {}, intervalIds: [] };
+        this.state = { allyCharacters: {}, enemyCharacters: {} };
         this.update = this.update.bind(this);
     }
 
@@ -16,14 +22,16 @@ class GameView extends React.Component {
         SocketClient.saveUpdate(this.update);
     }
 
+    /**
+     * Updates the game state based on the JSON object.
+     * @param {Object} jsonObject - The JSON object containing the game state that should be updated.
+     */
     update(jsonObject) {
         const action = jsonObject.method;
 
         switch (action) {
-            case "update":
-                for (let i = 0; i < jsonObject.game.length; i++) {
-                    this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
-                }
+            case "move":
+                this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "characterdmg":
@@ -31,25 +39,28 @@ class GameView extends React.Component {
 
             case "characterdead":
                 this.removeCharacter(jsonObject.team, jsonObject.id);
+                console.log(jsonObject.team,jsonObject.id);
                 break;
 
             case "spawn":
-                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, 0);
+                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "basedmg":
+                break;
+            
+            default:
                 break;
         }
     }
 
     /**
-     * Adds a character to chosen character list
-     * @param {*} characterType 
-     * @param {int} team 
-     * @param {int} id 
-     * @param {int} position 
+     * Spawns a character.
+     * @param {number} characterType - The type of character.
+     * @param {number} team - The team of the character.
+     * @param {number} id - The id of the character.
+     * @param {object} position - The position of the character.
      */
-
     spawnCharacter(characterType, team, id, position) {
         if (team === 0) {
             this.setState(prevState => ({
@@ -67,32 +78,13 @@ class GameView extends React.Component {
                 }
             }));
         }
-
-        /* The following should not be in the finished product
-        let newPosition = 0;
-
-        const intervalId = setInterval(() => {
-            this.setCharacterPosition(team, id, newPosition);
-            newPosition = newPosition + 0.1;
-
-            if (newPosition >= 90) {
-                clearInterval(this.state.intervalIds[0]);
-                this.removeCharacter(team, id);
-            }
-        }, 10);
-
-        this.setState(prevState => ({
-            ...prevState,
-            intervalIds: prevState.intervalIds.concat(intervalId)
-        }));
-        */
     }
 
     /**
-     * Sets the x position of chosen character
-     * @param {int} team 
-     * @param {int} id 
-     * @param {int} newPosition 
+     * Set the character position based on the team and ID.
+     * @param {number} team - The team of the character.
+     * @param {number} id - The ID of the character.
+     * @param {Object} newPosition - The new position of the character.
      */
     setCharacterPosition(team, id, newPosition) {
         if (team === 0) {
@@ -114,46 +106,50 @@ class GameView extends React.Component {
     }
 
     /**
-     * Removes the chosen character from the characters list
-     * @param {int} team 0 for ally and 1 for enemy
-     * @param {int} id 
+     * Removes a character based on the team and ID.
+     * @param {number} team - The team of the character.
+     * @param {number} id - The ID of the character.
      */
-
     removeCharacter(team, id) {
         if (team === 0) {
+            console.log("Removing team 0: "+ id);
             this.setState(prevState => {
+                console.log(this.state.allyCharacters);
                 const newAllyCharacters = { ...prevState.allyCharacters };
                 delete newAllyCharacters[id];
+                console.log(newAllyCharacters);
                 return { allyCharacters: newAllyCharacters };
             });
         }
         else if (team === 1) {
+            console.log("Removing team 1: "+ id);
             this.setState(prevState => {
                 const newEnemyCharacters = { ...prevState.enemyCharacters };
                 delete newEnemyCharacters[id];
+        
                 return { enemyCharacters: newEnemyCharacters };
             });
         }
     }
-   
     
-
     render() {
         return (
             <div id="gameview">
                 <GameBaseFirst />
+                <GameBaseSecond />
                 <div className="characters" id="ally">
                     {Object.entries(this.state.allyCharacters).map(([id, character]) => (
-                        <Character key={id} characterId={character.type} position={character.position}></Character>
+                        <Character key={id} characterId={id} position={character.position} characterType={character.type} ></Character>
                     ))}
                 </div>
 
+              
+
                 <div className="characters" id="enemy">
                     {Object.entries(this.state.enemyCharacters).map(([id, character]) => (
-                        <Character key={id} characterId={character.type} position={character.position}></Character>
+                        <Character key={id} characterId={id} position={character.position} characterType={character.type} ></Character>
                     ))}
                 </div>
-                <GameBaseSecond></GameBaseSecond>
             </div>
         );
     }

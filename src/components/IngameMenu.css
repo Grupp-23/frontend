@@ -1,0 +1,11 @@
+#ingame-menu {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: flex;
+}
+
+#gold-counter {
+    margin-right: 10px;
+    font-size: 1.5rem;
+}
