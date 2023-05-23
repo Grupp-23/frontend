@@ -65,7 +65,7 @@ class GameView extends React.Component {
             delete timeouts[id];
         
             this.setState({ projectiles, timeouts });
-        }, speed*distance*100);
+        }, distance*15/speed);
         
         this.setState(prevState => ({
             projectiles: {

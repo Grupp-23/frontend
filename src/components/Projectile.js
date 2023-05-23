@@ -21,7 +21,7 @@ class Projectile extends React.Component {
                 x: prevState.x + prevState.speed* Math.cos(prevState.direction),
                 y: prevState.y + prevState.speed* Math.sin(prevState.direction)
             }));
-        }, 10);
+        }, 15);
     }
 
     componentWillUnmount() {
