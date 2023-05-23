@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
-import Character1 from "../assets/character1.png";
-import Character2 from "../assets/character2.png";
-import Character3 from "../assets/character3.png";
+import Character1 from "../assets/SwordmanWithBorder.png";
+import Character2 from "../assets/ArcherWithBorder.png";
+import Character3 from "../assets/RiderWithBorder.png";
 import "./CharacterMenu.css"
 import SocketClient from "../services/SocketClient";
 
@@ -91,13 +91,13 @@ function CharacterMenu (){
                 <li>
                     <button onClick={() => handleClick(2)}>
                         <img src={Character2} alt="Character 2" />
-                        <p>50</p>
+                        <p>25</p>
                     </button>
                 </li>
                 <li>
                     <button onClick={() => handleClick(3)}>
                         <img src={Character3} alt="Character 3" />
-                        <p>100</p>
+                        <p>75</p>
                     </button>
                 </li>
 
