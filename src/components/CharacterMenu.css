@@ -5,24 +5,19 @@
 #character-menu > ul{
     list-style: none;
     margin: 0;
-    padding: 0;
+    padding: 20px 40px;
     display: flex;
 }
 
 
 
 #character-menu > ul > li {
-    margin-left: 0px;
-  }
+  margin-right: 0px;  
+}
 
 #character-menu > ul > li > button {
-    background-color: transparent;
-    border: solid;
-    border-color: burlywood;
-    padding: 0;
-    width: 2.1cm;
-    height: 2.18cm;
-    background-color: r;
+  background-color: transparent;
+  border-color: transparent;
 }
   
 #character-menu > ul > li > button:hover {
@@ -30,8 +25,8 @@
 }
 
 #character-menu > ul > li > button > img{
-    width: 2cm;
-    height: 2cm;
+    width: 2.2cm;
+    height: 2.2cm;
 }
 
 body {
