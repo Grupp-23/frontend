@@ -15,7 +15,7 @@ class GameView extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {}, timeouts: {} };
+        this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {} };
         this.update = this.update.bind(this);
     }
 
@@ -50,33 +50,31 @@ class GameView extends React.Component {
                 break;
             
             case "projectile":
-                this.spawnProjectile(jsonObject.id, jsonObject.direction, jsonObject.speed, jsonObject.x, jsonObject.y, jsonObject.distance);
+                this.spawnProjectile(jsonObject.id, jsonObject.direction, jsonObject.speed, jsonObject.x, jsonObject.y);
                 break;
+
+            case "projectiledmg":
+                this.removeProjectile(jsonObject.id);
 
             default:
                 break;
         }
     }
 
-    spawnProjectile(id, direction, speed, x, y, distance) {
-        const timeoutId = setTimeout(() => {
-            const { projectiles, timeouts } = this.state;
-            delete projectiles[id];
-            delete timeouts[id];
-        
-            this.setState({ projectiles, timeouts });
-        }, distance*15/speed);
-        
+    spawnProjectile(id, direction, speed, x, y) {
         this.setState(prevState => ({
             projectiles: {
                 ...prevState.projectiles,
                 [id]: { x: x, y: y, direction: direction, speed: speed }
-            },
-            timeouts: {
-                ...prevState.timeouts,
-                [id]: timeoutId
             }
         }));
+    }
+
+    removeProjectile(id) {
+        const { projectiles } = this.state;
+        delete projectiles[id];
+
+        this.setState({ projectiles });
     }
 
     /**
@@ -138,10 +136,8 @@ class GameView extends React.Component {
     removeCharacter(team, id) {
         if (team === 0) {
             this.setState(prevState => {
-                console.log(this.state.allyCharacters);
                 const newAllyCharacters = { ...prevState.allyCharacters };
                 delete newAllyCharacters[id];
-                console.log(newAllyCharacters);
                 return { allyCharacters: newAllyCharacters };
             });
         }
