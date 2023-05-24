@@ -15,7 +15,7 @@ const SocketClient = {
      * @param {function} navigate - The navigation function to navigate to other paths on the website.
      */
     setupConnection(navigate) {
-        this.client = new WebSocket("ws://localhost:25565");
+        this.client = new WebSocket("ws://ageofus.herokuapp.com:8080");
         this.client.onmessage = this.handleMessage.bind(this);
 
         this.client.onopen = () => {
