@@ -1,14 +1,21 @@
-import React from "react";
+import React, { setState, useRef } from "react";
+
 import "./GameView.css";
 import GameBaseFirst from "../components/GameBaseFirst";
 import GameBaseSecond from "../components/GameBaseSecond";
 import Character from "./Character";
 import SocketClient from "../services/SocketClient";
+import Projectile from "../components/Projectile.js";
 
+/**
+ * Represents the game world.
+ * @component
+ */
 class GameView extends React.Component {
+    
     constructor(props) {
         super(props);
-        this.state = { allyCharacters: {}, enemyCharacters: {}, intervalIds: [] };
+        this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {} };
         this.update = this.update.bind(this);
     }
 
@@ -16,14 +23,16 @@ class GameView extends React.Component {
         SocketClient.saveUpdate(this.update);
     }
 
+    /**
+     * Updates the game state based on the JSON object.
+     * @param {Object} jsonObject - The JSON object containing the game state that should be updated.
+     */
     update(jsonObject) {
         const action = jsonObject.method;
 
         switch (action) {
-            case "update":
-                for (let i = 0; i < jsonObject.game.length; i++) {
-                    this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
-                }
+            case "move":
+                this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "characterdmg":
@@ -34,22 +43,47 @@ class GameView extends React.Component {
                 break;
 
             case "spawn":
-                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, 0);
+                this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "basedmg":
                 break;
+            
+            case "projectile":
+                this.spawnProjectile(jsonObject.id, jsonObject.direction, jsonObject.speed, jsonObject.x, jsonObject.y);
+                break;
+
+            case "projectiledmg":
+                this.removeProjectile(jsonObject.id);
+
+            default:
+                break;
         }
     }
 
-    /**
-     * Adds a character to chosen character list
-     * @param {*} characterType 
-     * @param {int} team 
-     * @param {int} id 
-     * @param {int} position 
-     */
+    spawnProjectile(id, direction, speed, x, y) {
+        this.setState(prevState => ({
+            projectiles: {
+                ...prevState.projectiles,
+                [id]: { x: x, y: y, direction: direction, speed: speed }
+            }
+        }));
+    }
 
+    removeProjectile(id) {
+        const { projectiles } = this.state;
+        delete projectiles[id];
+
+        this.setState({ projectiles });
+    }
+
+    /**
+     * Spawns a character.
+     * @param {number} characterType - The type of character.
+     * @param {number} team - The team of the character.
+     * @param {number} id - The id of the character.
+     * @param {object} position - The position of the character.
+     */
     spawnCharacter(characterType, team, id, position) {
         if (team === 0) {
             this.setState(prevState => ({
@@ -67,32 +101,13 @@ class GameView extends React.Component {
                 }
             }));
         }
-
-        /* The following should not be in the finished product
-        let newPosition = 0;
-
-        const intervalId = setInterval(() => {
-            this.setCharacterPosition(team, id, newPosition);
-            newPosition = newPosition + 0.1;
-
-            if (newPosition >= 90) {
-                clearInterval(this.state.intervalIds[0]);
-                this.removeCharacter(team, id);
-            }
-        }, 10);
-
-        this.setState(prevState => ({
-            ...prevState,
-            intervalIds: prevState.intervalIds.concat(intervalId)
-        }));
-        */
     }
 
     /**
-     * Sets the x position of chosen character
-     * @param {int} team 
-     * @param {int} id 
-     * @param {int} newPosition 
+     * Set the character position based on the team and ID.
+     * @param {number} team - The team of the character.
+     * @param {number} id - The ID of the character.
+     * @param {Object} newPosition - The new position of the character.
      */
     setCharacterPosition(team, id, newPosition) {
         if (team === 0) {
@@ -114,11 +129,10 @@ class GameView extends React.Component {
     }
 
     /**
-     * Removes the chosen character from the characters list
-     * @param {int} team 0 for ally and 1 for enemy
-     * @param {int} id 
+     * Removes a character based on the team and ID.
+     * @param {number} team - The team of the character.
+     * @param {number} id - The ID of the character.
      */
-
     removeCharacter(team, id) {
         if (team === 0) {
             this.setState(prevState => {
@@ -131,29 +145,35 @@ class GameView extends React.Component {
             this.setState(prevState => {
                 const newEnemyCharacters = { ...prevState.enemyCharacters };
                 delete newEnemyCharacters[id];
+        
                 return { enemyCharacters: newEnemyCharacters };
             });
         }
     }
-   
     
-
     render() {
         return (
             <div id="gameview">
                 <GameBaseFirst />
+                <GameBaseSecond />
+
+                <div className="projectiles">
+                    {Object.entries(this.state.projectiles).map(([id, projectile]) => (
+                        <Projectile key={id} projectileId={id} x={projectile.x} y={projectile.y} direction={projectile.direction} speed={projectile.speed} />
+                    ))}
+                </div>
+
                 <div className="characters" id="ally">
                     {Object.entries(this.state.allyCharacters).map(([id, character]) => (
-                        <Character key={id} characterId={character.type} position={character.position}></Character>
+                        <Character key={id} characterId={id} position={character.position} characterType={character.type} ></Character>
                     ))}
                 </div>
 
                 <div className="characters" id="enemy">
                     {Object.entries(this.state.enemyCharacters).map(([id, character]) => (
-                        <Character key={id} characterId={character.type} position={character.position}></Character>
+                        <Character key={id} characterId={id} position={character.position} characterType={character.type} ></Character>
                     ))}
                 </div>
-                <GameBaseSecond></GameBaseSecond>
             </div>
         );
     }

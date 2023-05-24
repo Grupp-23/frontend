@@ -1,36 +1,83 @@
-#home-menu{
+#home-menu {
     width: 50%;
     height: 50%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-}
+  }
 
-#home-menu button {
+  #home-menu .button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+  }
+
+  #home-menu .button-group button {
+    margin-bottom: 10px;
+  }
+  
+  #home-menu button {
     background-color: #4CAF50;
     border: none;
     color: white;
     height: 45px;
-    width: 80px;
+    width: 100px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 1.75rem;
     border-radius: 10px;
     box-shadow: 0 0 10px black;
-    
-}
-
-#home-menu button:hover {
+  }
+  
+  #home-menu button:hover {
     background-color: #469e49;
     cursor: pointer;
-}
-
-#home-menu input[type=text] {
+  }
+  
+  #home-menu input[type="text"] {
     height: 40px;
     width: 40%;
     margin-right: 10px;
     font-size: 2rem;
     border-radius: 10px;
     border: 2px solid black;
-}
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+  }
+  
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  

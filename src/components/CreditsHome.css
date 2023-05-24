@@ -1,0 +1,47 @@
+.popup-box {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .box {
+    border-radius: 25px;
+    box-shadow: 0 0 10px black;
+    background: #469e49;
+    padding: 20px;
+    width: 50%;
+    height: 300px;
+    color: aliceblue;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 10px; /* Gap between cells */
+  }
+
+  .box p {
+    margin: 0; /* Remove default margin for paragraphs */
+  }
+
+  .box .column1 {
+    padding-right: 20px; /* Increase the padding on the right side of column 1 */
+    padding-left: 40px;
+  }
+  
+  .box .specialThanks {
+    padding-left: 40px;
+  }
+
+  .btn-close {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 16px;
+  }
+  

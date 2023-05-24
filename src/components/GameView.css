@@ -10,3 +10,7 @@
     background-size: cover;
     margin: 0;
 }
+
+#enemy img {
+    transform: scaleX(-1);
+}
