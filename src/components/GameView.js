@@ -7,7 +7,7 @@ import Character from "./Character";
 import SocketClient from "../services/SocketClient";
 import Projectile from "../components/Projectile.js";
 
-import backgroundMusic from "../assets/91476_Glorious_morning.mp3";
+//import backgroundMusic from "../assets/91476_Glorious_morning.mp3";
 import SpawnEffect from "../assets/SpawnEffect.mp3";
 import HurtEffect from "../assets/HurtEffect.mp3";
 import SwordEffect from "../assets/SwordEffect.mp3";
@@ -74,6 +74,7 @@ class GameView extends React.Component {
 
             case "projectiledmg":
                 this.removeProjectile(jsonObject.id);
+                break;
 
             default:
                 break;
