@@ -1,4 +1,4 @@
-import React, { setState, useRef } from "react";
+import React from "react";
 
 import "./GameView.css";
 import GameBaseFirst from "../components/GameBaseFirst";
