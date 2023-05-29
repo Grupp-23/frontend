@@ -31,11 +31,11 @@ function Game(){
     return (
         <div>
             <GameView placeholder="Name"></GameView>
+            <IngameMenu />
             <audio src={backgroundMusic} controls autoPlay>
                 <p>If you are reading this, it is because your browser does not support the audio element.</p>
             </audio>
             <ScrollFunction />
-            <IngameMenu />
             {showEndScreen && <EndScreen victoryText={endScreenStatus} />}
         </div>
     );

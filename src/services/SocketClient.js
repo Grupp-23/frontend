@@ -49,10 +49,11 @@ const SocketClient = {
         else {
             const obj = JSON.parse(event.data);
             if (obj.method === "gold") {
-                this.menuSetGold(obj.amount);
+                if (this.menuSetGold != null) {
+                    this.menuSetGold(obj.amount);
+                }
             } 
             else if (obj.method === "win") {
-                console.log(obj.status);
                 this.setEndScreen(obj.status);
             }
             else {
