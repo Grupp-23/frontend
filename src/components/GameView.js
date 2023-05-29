@@ -7,6 +7,14 @@ import Character from "./Character";
 import SocketClient from "../services/SocketClient";
 import Projectile from "../components/Projectile.js";
 
+import backgroundMusic from "../assets/91476_Glorious_morning.mp3";
+import SpawnEffect from "../assets/SpawnEffect.mp3";
+import HurtEffect from "../assets/HurtEffect.mp3";
+import SwordEffect from "../assets/SwordEffect.mp3";
+import SpearEffect from "../assets/SpearEffect.mp3";
+import ArrowEffect from "../assets/ArrowEffect.mp3";
+
+
 /**
  * Represents the game world.
  * @component
@@ -17,11 +25,19 @@ class GameView extends React.Component {
         super(props);
         this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {} };
         this.update = this.update.bind(this);
+        this.audioSpawn = new Audio(SpawnEffect);
+        this.audioHurt = new Audio(HurtEffect);
+        this.audioSword = new Audio(SwordEffect);
+        this.audioSpear = new Audio(SpearEffect);
+        this.audioArrow = new Audio(ArrowEffect);
+        
     }
 
     componentDidMount() {
         SocketClient.saveUpdate(this.update);
     }
+
+    
 
     /**
      * Updates the game state based on the JSON object.
@@ -29,13 +45,14 @@ class GameView extends React.Component {
      */
     update(jsonObject) {
         const action = jsonObject.method;
-
+        
         switch (action) {
             case "move":
                 this.setCharacterPosition(jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
             case "characterdmg":
+                this.audioSword.play();
                 break;
 
             case "characterdead":
@@ -43,6 +60,7 @@ class GameView extends React.Component {
                 break;
 
             case "spawn":
+                this.audioSpawn.play();
                 this.spawnCharacter(jsonObject.type, jsonObject.team, jsonObject.id, jsonObject.pos);
                 break;
 
@@ -50,6 +68,7 @@ class GameView extends React.Component {
                 break;
             
             case "projectile":
+                this.audioArrow.play();
                 this.spawnProjectile(jsonObject.id, jsonObject.direction, jsonObject.speed, jsonObject.x, jsonObject.y);
                 break;
 
