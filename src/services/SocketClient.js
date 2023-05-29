@@ -15,7 +15,7 @@ const SocketClient = {
      * @param {function} navigate - The navigation function to navigate to other paths on the website.
      */
     setupConnection(navigate) {
-        this.client = new WebSocket("wss://backend-production-6ad2.up.railway.app");
+        this.client = new WebSocket("ws://localhost:8080");
         this.client.onmessage = this.handleMessage.bind(this);
 
         this.client.onopen = () => {

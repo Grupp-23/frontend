@@ -8,4 +8,23 @@
 #gold-counter {
     margin-right: 10px;
     font-size: 1.5rem;
+    display: inline-block;
+    font-size: 19px;
+   margin-top: 9px;
+   margin-left: 5px;
+   margin-bottom: 2px;
+   margin-right: 398px;
+
 }
+
+.coinpic{
+    width: 18px;
+    height: 17px;
+    border-radius: 25px;
+    margin-top: 11px;
+  
+    
+}
+
+
+

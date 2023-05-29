@@ -1,23 +1,39 @@
 #character-menu {
     display: flex;
-}
+    justify-content: flex-end;
+    position: fixed;
+    top: 0px;
+    right: 0px; 
+    
+   
+    z-index: 100;
+  }
 
-#character-menu > ul{
+  #character-menu > ul{
     list-style: none;
+    max-width: 500px;
     margin: 0;
-    padding: 20px 40px;
+    padding: 0;
     display: flex;
+    flex-wrap: wrap;
+    
 }
 
 
 
 #character-menu > ul > li {
-  margin-right: 0px;  
-}
+    margin-left: 0px;
+  }
 
 #character-menu > ul > li > button {
-  background-color: transparent;
-  border-color: transparent;
+    background-color: transparent;
+    border: solid;
+    border-color: burlywood;
+    padding: 0;
+    width: 2.1cm;
+    height: 2.18cm;
+    background-color: r;
+   
 }
   
 #character-menu > ul > li > button:hover {
@@ -25,8 +41,8 @@
 }
 
 #character-menu > ul > li > button > img{
-    width: 2.2cm;
-    height: 2.2cm;
+    width: 2cm;
+    height: 2cm;
 }
 
 body {
@@ -36,13 +52,13 @@ body {
   }
   h1 {
     font-size: 17px;
-    font-weight: lighter;
+    font-weight: 350;
     color: #2f2b2b;
     margin: 1em 0 0.5em;
   }
   
-  .container {
-    
+  .spawnContainer {
+    margin-right: 0px;
     margin: 0 auto;
     width: 70%;
     margin-right: 100px;
@@ -56,10 +72,13 @@ body {
 
   .progress-bar {
     
-    margin: 0 auto;
-    width: 130px;
+    margin: auto;
+    width: 125px;
     height: 10px;
     position: fixed;
+    border-color: black;
+    background-color: black;
+    
     
   }
   .progress-bar .progress {
@@ -67,8 +86,8 @@ body {
     background-color: #bd251d;
     height: 10px;
     width: 0%;
-    -webkit-animation-duration: 2s;
-    -webkit-animation-name: loading;
+    /* -webkit-animation-duration: 2s; */
+    /* -webkit-animation-name: loading; */
   }
   .progress-bar .progress .progress-shadow {
     position: absolute;
@@ -77,10 +96,12 @@ body {
     top: 100%;
     transform: skew(-22.5deg);
     transform-origin: 0 0;
+    
   }
 
   .queue{
     width: 200px;
+
     
   }
 
@@ -94,6 +115,22 @@ body {
     margin-right: 5px;
 
   }
+
+  .spawnText{
+    margin-top: 5px;
+  }
+
+.progressqueue{
+  display: inline-block;
+}
+
+.spawnFieldInfo{
+  margin-right: 15px;
+}
+
+
+
+
   
   
   @-webkit-keyframes loading {
