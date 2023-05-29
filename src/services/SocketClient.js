@@ -15,7 +15,7 @@ const SocketClient = {
      * @param {function} navigate - The navigation function to navigate to other paths on the website.
      */
     setupConnection(navigate) {
-        this.client = new WebSocket("ws://localhost:8080");
+        this.client = new WebSocket("ws://192.168.50.100:8080");
         this.client.onmessage = this.handleMessage.bind(this);
 
         this.client.onopen = () => {
@@ -49,10 +49,11 @@ const SocketClient = {
         else {
             const obj = JSON.parse(event.data);
             if (obj.method === "gold") {
-                this.menuSetGold(obj.amount);
+                if (this.menuSetGold != null) {
+                    this.menuSetGold(obj.amount);
+                }
             } 
             else if (obj.method === "win") {
-                console.log(obj.status);
                 this.setEndScreen(obj.status);
             }
             else {
