@@ -31,7 +31,7 @@ function Game(){
         <div>
             <GameView placeholder="Name"></GameView>
             <IngameMenu />
-            <audio src={backgroundMusic} controls autoPlay>
+            <audio src={backgroundMusic} controls autoPlay loop>
                 <p>If you are reading this, it is because your browser does not support the audio element.</p>
             </audio>
             <ScrollFunction />

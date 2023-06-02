@@ -15,7 +15,7 @@ const SocketClient = {
      * @param {function} navigate - The navigation function to navigate to other paths on the website.
      */
     setupConnection(navigate) {
-        this.client = new WebSocket("ws://localhost:8080");
+        this.client = new WebSocket("ws://10.2.7.189:25565");
         this.client.onmessage = this.handleMessage.bind(this);
 
         this.client.onopen = () => {
@@ -27,6 +27,9 @@ const SocketClient = {
 
             // You can now safely call the send method
             this.sendMessage("hello");
+            this.interval = setInterval(() => {
+                this.sendMessage("Hello");
+            }, 5000);
         }
     },
 
