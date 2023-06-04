@@ -15,7 +15,9 @@ class GameView extends React.Component {
     
     constructor(props) {
         super(props);
-        this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {} };
+        this.state = { allyCharacters: {}, enemyCharacters: {}, projectiles: {}, 
+        playerHealth: 100,
+        opponentHealth: 100};
         this.update = this.update.bind(this);
     }
 
@@ -47,6 +49,7 @@ class GameView extends React.Component {
                 break;
 
             case "basedmg":
+                this.setState({ baseHealth: jsonObject.health });
                 break;
             
             case "projectile":
@@ -102,6 +105,7 @@ class GameView extends React.Component {
             }));
         }
     }
+    
 
     /**
      * Set the character position based on the team and ID.
@@ -151,7 +155,7 @@ class GameView extends React.Component {
         }
     }
     
-    render() {
+   /* render() {
         return (
             <div id="gameview">
                 <GameBaseFirst />
@@ -176,7 +180,39 @@ class GameView extends React.Component {
                 </div>
             </div>
         );
-    }
+    } */
+
+    render() {
+        const { baseHealth } = this.state; // Destructure baseHealth from state
+      
+        return (
+          <div id="gameview">
+            {/* ... */}
+            <div id="baseHealth">{baseHealth}</div> {/* Display base health */}
+            <GameBaseFirst GameBaseFirst baseHealth={baseHealth}/>
+            <GameBaseSecond GameBaseSecond baseHealth={baseHealth}/>
+      
+            <div className="projectiles">
+              {Object.entries(this.state.projectiles).map(([id, projectile]) => (
+                <Projectile key={id} projectileId={id} x={projectile.x} y={projectile.y} direction={projectile.direction} speed={projectile.speed} />
+              ))}
+            </div>
+      
+            <div className="characters" id="ally">
+              {Object.entries(this.state.allyCharacters).map(([id, character]) => (
+                <Character key={id} characterId={id} position={character.position} characterType={character.type} />
+              ))}
+            </div>
+      
+            <div className="characters" id="enemy">
+              {Object.entries(this.state.enemyCharacters).map(([id, character]) => (
+                <Character key={id} characterId={id} position={character.position} characterType={character.type} />
+              ))}
+            </div>
+          </div>
+        );
+      }
+      
 }
 
 export default GameView;
