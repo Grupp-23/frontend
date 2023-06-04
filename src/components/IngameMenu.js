@@ -1,5 +1,6 @@
 import React from "react";
 import CharacterMenu from "../components/CharacterMenu";
+import goldpic from "../assets/goldpic.png";
 import "./IngameMenu.css"
 import SocketClient from "../services/SocketClient";
 
@@ -29,7 +30,9 @@ class IngameMenu extends React.Component {
     render () {
         return (
             <div className="menu" id="ingame-menu">
-                <h1 id="gold-counter">{this.state.gold}$</h1>
+                <img class="coinpic" src = {goldpic}></img>
+                <h1 id="gold-counter">{this.state.gold}</h1>
+                
                 <CharacterMenu />
             </div>
         );
